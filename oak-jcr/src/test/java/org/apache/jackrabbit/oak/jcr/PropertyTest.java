@@ -295,7 +295,9 @@ public class PropertyTest extends AbstractJCRTest {
         superuser.save();
         n = superuser.getNode(user.getPath());
 
+        assertEquals("internal", superuser.getNamespaceURI("rep"));
         assertTrue(n.hasProperty("rep:authorizableId"));
+        // The following fails, because internal is not detected as proper namespace for some reason
         assertTrue(n.hasProperty("{internal}authorizableId"));
     }
 }
